@@ -12,9 +12,11 @@ import {
 import theme from './src/global/styles/theme';
 
 import { StatusBar, Text } from 'react-native';
-import { Register } from './src/screens/Register';
+import { SignIn } from './src/screens/SignIn';
 
 import { AppRoutes } from './src/routes/app.routes';
+
+import { AuthProvider } from './src/hooks/auth';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -31,7 +33,9 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
       <NavigationContainer>
-        <AppRoutes />
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
       </NavigationContainer>
     </ThemeProvider>
   )
